@@ -4,14 +4,15 @@ import os
 from bs4 import BeautifulSoup
 import time
 import random
-from fake_useragent import UserAgent
+from agent import agents
+from ip_pool import get_ip_addr
 
 '''
 构建请求头
 '''
 headers = {
-    "User-Agent": UserAgent().random            # 随机生成请求浏览器头
-    # "proxies": get_ip_addr()                  # 从代理池中随机获取ip地址
+    "User-Agent": random.choice(agents),            # 随机生成请求浏览器头
+    "proxies": get_ip_addr()                  # 从代理池中随机获取ip地址
 }
 
 '''获取爬去页面的unid'''
@@ -41,7 +42,7 @@ def get_dir_name_and_img_url(unid):
     response = requests.get(page_url, headers=headers)
     soup = BeautifulSoup(response.text, "lxml")
     dir_name = soup.find(attrs={"class": "sku-name"}).get_text().strip()
-    # print(dir_name)
+    print(dir_name)
     html = etree.HTML(response.text)
     path = "/home/chen/Downloads/" + dir_name
     mdkir_dir(path)
