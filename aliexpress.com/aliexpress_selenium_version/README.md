@@ -1,4 +1,16 @@
 阿里速卖通爬虫
 使用了selenium自动化工具实现了登录与商品信息的爬取
+其中Cookie文件夹中包含两个文件，主要功能为实现登录并获取Cookies
+主要爬取代码在aliexpress_product_url中
+首先下载文件到你的本地
+进入到aliexpress_selenium_version中，
+执行命令
+
+pipenv install
+
+当下载完成之后运行代码
+
+python3 aliexpress_product_url.py
+
 可以根据使用需要进行扩展
 
